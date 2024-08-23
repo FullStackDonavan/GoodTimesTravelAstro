@@ -1,0 +1,55 @@
+---
+import HeaderCTA from "../components/HeaderCTA.vue";
+import Navbar from "../components/layout/navbar.vue";
+import TheFooter from "../components/layout/TheFooter.vue";
+import PatternSection from "../components/containers/PatternSection.vue";
+import HomepageHeroSection from "../components/sections/HomePage/HomepageHeroSection.vue";
+import CharterBusAmenitiesSection from "../components/sections/HomePage/CharterBusAmenitiesSection.vue";
+import GroupsOfAllSizesSection from "../components/sections/HomePage/GroupsOfAllSizesSection.vue";
+import CourteousAndProfessionalDriversSection from "../components/sections/HomePage/CourteousAndProfessionalDriversSection.vue";
+import TransportationServicesSection from "../components/sections/TransportationServicesSection.vue";
+import ColumnAnimated from "../components/ColumnAnimated.vue";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Astro Project</title>
+    <script is:inline>
+      (function () {
+        const theme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        localStorage.setItem("theme", theme);
+      })();
+    </script>
+    <style>
+      /* Ensure icons are invisible until Vue has initialized */
+      .initially-hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="transition duration-500 dark:bg-slate-950 dark:text-slate-300">
+      <HeaderCTA />
+      <Navbar client:load />
+      <HomepageHeroSection />
+      <CharterBusAmenitiesSection client:load />
+      <GroupsOfAllSizesSection client:load />
+      <ColumnAnimated animationClass="fade-in" client:load>
+        <CourteousAndProfessionalDriversSection />
+      </ColumnAnimated>
+      <ColumnAnimated animationClass="fade-in" client:load>
+        <TransportationServicesSection />
+      </ColumnAnimated>
+      <TheFooter />
+    </div>
+  </body>
+</html>
